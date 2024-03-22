@@ -81,6 +81,7 @@ elif [ "$BENCHMARK" == "openllm" ]; then
     git clone https://github.com/EleutherAI/lm-evaluation-harness
     cd lm-evaluation-harness
     pip install -e .
+    pip install lm-eval[vllm]
 
     benchmark="arc"
     accelerate launch -m lm_eval --model vllm \
