@@ -85,7 +85,7 @@ elif [ "$BENCHMARK" == "openllm" ]; then
 
     benchmark="arc"
     lm_eval --model vllm \
-        --model_args pretrained=${MODEL_ID},dtype=auto,gpu_memory_utilization=0.8,trust_remote_code=$TRUST_REMOTE_CODE \
+        --model_args pretrained=${MODEL_ID},dtype=auto,trust_remote_code=$TRUST_REMOTE_CODE \
         --tasks arc_challenge \
         --num_fewshot 25 \
         --batch_size auto \
@@ -93,7 +93,7 @@ elif [ "$BENCHMARK" == "openllm" ]; then
 
     benchmark="hellaswag"
     lm_eval --model vllm \
-        --model_args pretrained=${MODEL_ID},dtype=auto,gpu_memory_utilization=0.8,trust_remote_code=$TRUST_REMOTE_CODE \
+        --model_args pretrained=${MODEL_ID},dtype=auto,trust_remote_code=$TRUST_REMOTE_CODE \
         --tasks hellaswag \
         --num_fewshot 10 \
         --batch_size auto \
@@ -110,7 +110,7 @@ elif [ "$BENCHMARK" == "openllm" ]; then
     
     benchmark="truthfulqa"
     lm_eval --model vllm \
-        --model_args pretrained=${MODEL_ID},dtype=auto,gpu_memory_utilization=0.8,trust_remote_code=$TRUST_REMOTE_CODE \
+        --model_args pretrained=${MODEL_ID},dtype=auto,trust_remote_code=$TRUST_REMOTE_CODE \
         --tasks truthfulqa \
         --num_fewshot 0 \
         --batch_size auto \
@@ -118,7 +118,7 @@ elif [ "$BENCHMARK" == "openllm" ]; then
     
     benchmark="winogrande"
     lm_eval --model vllm \
-        --model_args pretrained=${MODEL_ID},dtype=auto,gpu_memory_utilization=0.8,trust_remote_code=$TRUST_REMOTE_CODE \
+        --model_args pretrained=${MODEL_ID},dtype=auto,trust_remote_code=$TRUST_REMOTE_CODE \
         --tasks winogrande \
         --num_fewshot 5 \
         --batch_size auto \
@@ -126,7 +126,7 @@ elif [ "$BENCHMARK" == "openllm" ]; then
     
     benchmark="gsm8k"
     lm_eval --model vllm \
-        --model_args pretrained=${MODEL_ID},dtype=auto,gpu_memory_utilization=0.8,trust_remote_code=$TRUST_REMOTE_CODE \
+        --model_args pretrained=${MODEL_ID},dtype=auto,trust_remote_code=$TRUST_REMOTE_CODE \
         --tasks gsm8k \
         --num_fewshot 5 \
         --batch_size auto \
