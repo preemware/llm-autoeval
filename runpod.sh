@@ -80,11 +80,10 @@ if [ "$BENCHMARK" == "nous" ]; then
 elif [ "$BENCHMARK" == "openllm" ]; then
     git clone https://github.com/EleutherAI/lm-evaluation-harness
     cd lm-evaluation-harness
-    pip install -e ".[vllm,promptsource]"
-    pip install langdetect immutabledict
+    pip install -e .
 
     benchmark="arc"
-    lm_eval --model vllm \
+    accelerate launch -m lm_eval --model vllm \
         --model_args pretrained=${MODEL_ID},dtype=auto,gpu_memory_utilization=0.8,trust_remote_code=$TRUST_REMOTE_CODE \
         --tasks arc_challenge \
         --num_fewshot 25 \
@@ -92,7 +91,7 @@ elif [ "$BENCHMARK" == "openllm" ]; then
         --output_path ./${benchmark}.json
 
     benchmark="hellaswag"
-    lm_eval --model vllm \
+    accelerate launch -m lm_eval --model vllm \
         --model_args pretrained=${MODEL_ID},dtype=auto,gpu_memory_utilization=0.8,trust_remote_code=$TRUST_REMOTE_CODE \
         --tasks hellaswag \
         --num_fewshot 10 \
@@ -109,7 +108,7 @@ elif [ "$BENCHMARK" == "openllm" ]; then
     #     --output_path ./${benchmark}.json
     
     benchmark="truthfulqa"
-    lm_eval --model vllm \
+    accelerate launch -m lm_eval --model vllm \
         --model_args pretrained=${MODEL_ID},dtype=auto,gpu_memory_utilization=0.8,trust_remote_code=$TRUST_REMOTE_CODE \
         --tasks truthfulqa \
         --num_fewshot 0 \
@@ -117,7 +116,7 @@ elif [ "$BENCHMARK" == "openllm" ]; then
         --output_path ./${benchmark}.json
     
     benchmark="winogrande"
-    lm_eval --model vllm \
+    accelerate launch -m lm_eval --model vllm \
         --model_args pretrained=${MODEL_ID},dtype=auto,gpu_memory_utilization=0.8,trust_remote_code=$TRUST_REMOTE_CODE \
         --tasks winogrande \
         --num_fewshot 5 \
@@ -125,7 +124,7 @@ elif [ "$BENCHMARK" == "openllm" ]; then
         --output_path ./${benchmark}.json
     
     benchmark="gsm8k"
-    lm_eval --model vllm \
+    accelerate launch -m lm_eval --model vllm \
         --model_args pretrained=${MODEL_ID},dtype=auto,gpu_memory_utilization=0.8,trust_remote_code=$TRUST_REMOTE_CODE \
         --tasks gsm8k \
         --num_fewshot 5 \
